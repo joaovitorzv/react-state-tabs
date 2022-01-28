@@ -1,6 +1,3 @@
-import * as React from 'react';
+import Tabs from './TabsWrapper';
 
-// Delete me
-export const Thing = () => {
-  return <div>this lib suck</div>;
-};
+export { Tabs };
