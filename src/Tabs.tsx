@@ -9,15 +9,33 @@ interface ITabs {
   defaultActiveTab?: number;
 }
 
-function Tabs({ children }: ITabs) {
+function Tabs({ children, defaultActiveTab }: ITabs) {
+  const [active, setActive] = React.useState(defaultActiveTab);
+  console.log(active);
+
   return (
     <div className="tabs-wrapper">
       <ul>
         {children.map(tab => (
-          <li key={tab.key}>{tab.props.tabName}</li>
+          <li
+            key={tab.key}
+            className={`tab-nav${Number(tab.key) === active ? '--active' : ''}`}
+            onClick={() => setActive(Number(tab.key))}
+          >
+            {tab.props.tabName}
+          </li>
         ))}
       </ul>
-      <div>{children.map(tab => tab.props.children)}</div>
+      {children.map(tab => (
+        <div
+          key={tab.key}
+          className={`tab-content${
+            Number(tab.key) === active ? '--active' : ''
+          }`}
+        >
+          {tab.props.children}
+        </div>
+      ))}
     </div>
   );
 }

@@ -6,7 +6,7 @@ export interface ITab {
 }
 
 function Tab({ children }: ITab) {
-  return <div className="tab">x{children}</div>;
+  return <div className="tab">{children}</div>;
 }
 
 export default Tab;

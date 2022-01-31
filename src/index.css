@@ -1,7 +1,27 @@
-html,
-body {
+* {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  border: 1px solid red;
+}
+
+li {
+  cursor: pointer;
+}
+
+.tab-nav--active {
   background-color: red;
 }
-.tabs-wrapper {
-  background-color: blue;
+
+.tab-content {
+  border: 1px solid blue;
+  display: none;
+}
+
+.tab-content--active {
+  display: block;
 }
