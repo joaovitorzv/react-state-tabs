@@ -37,6 +37,10 @@
   "name": "react-state-tabs",
   "author": "João V. Veras",
   "module": "dist/react-state-tabs.esm.js",
+  "keywords": [
+    "react",
+    "react tabs"
+  ],
   "size-limit": [
     {
       "path": "dist/react-state-tabs.cjs.production.min.js",
