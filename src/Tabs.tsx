@@ -1,7 +1,7 @@
 import * as React from 'react';
+import clsx from 'clsx';
 
 import { ITab } from './Tab';
-
 import './index.css';
 
 interface ITabs {
@@ -19,7 +19,9 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
         {children.map(tab => (
           <li
             key={tab.key}
-            className={`tab-nav${Number(tab.key) === active ? '--active' : ''}`}
+            className={clsx('tab-nav', {
+              'tab-nav--active': Number(tab.key) === active,
+            })}
             onClick={() => setActive(Number(tab.key))}
           >
             {tab.props.tabName}
@@ -29,9 +31,9 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
       {children.map(tab => (
         <div
           key={tab.key}
-          className={`tab-content${
-            Number(tab.key) === active ? '--active' : ''
-          }`}
+          className={clsx('tab-content', {
+            'tab-content--active': Number(tab.key) === active,
+          })}
         >
           {tab.props.children}
         </div>

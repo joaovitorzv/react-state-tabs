@@ -6,19 +6,13 @@
 ul {
   list-style: none;
   display: flex;
-  border: 1px solid red;
 }
 
 li {
   cursor: pointer;
 }
 
-.tab-nav--active {
-  background-color: red;
-}
-
 .tab-content {
-  border: 1px solid blue;
   display: none;
 }
 
