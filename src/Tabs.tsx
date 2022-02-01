@@ -13,10 +13,10 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
   const [active, setActive] = React.useState(defaultActiveTab);
   console.log(active);
 
-  function handleTabPress(key: number, disabled?: boolean) {
+  function handleTabPress(id: number, disabled?: boolean) {
     return () => {
       if (disabled) return;
-      setActive(key);
+      setActive(id);
     };
   }
   return (
@@ -24,17 +24,17 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
       <ul>
         {children.map(tab => (
           <li
-            key={tab.key}
+            key={tab.props.id}
             className={clsx(
               'tab-nav',
               {
-                'tab-nav--active': Number(tab.key) === active,
+                'tab-nav--active': tab.props.id === active,
               },
               {
                 'tab-nav--disabled': tab.props.disabled,
               }
             )}
-            onClick={handleTabPress(Number(tab.key), tab.props.disabled)}
+            onClick={handleTabPress(tab.props.id, tab.props.disabled)}
           >
             {tab.props.tabName}
           </li>
@@ -42,9 +42,9 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
       </ul>
       {children.map(tab => (
         <div
-          key={tab.key}
+          key={tab.props.id}
           className={clsx('tab-content', {
-            'tab-content--active': Number(tab.key) === active,
+            'tab-content--active': Number(tab.props.id) === active,
           })}
         >
           {tab.props.children}
