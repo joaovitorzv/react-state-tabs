@@ -7,8 +7,8 @@
 <p align="center">
   <img src="https://img.shields.io/github/license/joaovitorzv/react-state-tabs?color=gree&style=plastic" />
   <img src="https://img.shields.io/github/commit-activity/y/joaovitorzv/react-state-tabs?color=gree&logo=github&style=plastic" />
-  <img src="https://img.shields.io/bundlephobia/min/react-state-tabs?color=gree&label=minified%20size&style=plastic" />
   <img src="https://img.shields.io/npm/v/react-state-tabs?color=gree&logo=npm&style=plastic" />
+  <img src="https://img.shields.io/npm/dependency-version/react-state-tabs/peer/react" />
   </p>
 
 # react-state-tabs
