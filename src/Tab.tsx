@@ -2,6 +2,7 @@ import * as React from 'react';
 
 export interface ITab {
   tabName: string;
+  disabled?: boolean;
   children: React.ReactNode;
 }
 

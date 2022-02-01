@@ -13,16 +13,28 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
   const [active, setActive] = React.useState(defaultActiveTab);
   console.log(active);
 
+  function handleTabPress(key: number, disabled?: boolean) {
+    return () => {
+      if (disabled) return;
+      setActive(key);
+    };
+  }
   return (
     <div className="tabs-wrapper">
       <ul>
         {children.map(tab => (
           <li
             key={tab.key}
-            className={clsx('tab-nav', {
-              'tab-nav--active': Number(tab.key) === active,
-            })}
-            onClick={() => setActive(Number(tab.key))}
+            className={clsx(
+              'tab-nav',
+              {
+                'tab-nav--active': Number(tab.key) === active,
+              },
+              {
+                'tab-nav--disabled': tab.props.disabled,
+              }
+            )}
+            onClick={handleTabPress(Number(tab.key), tab.props.disabled)}
           >
             {tab.props.tabName}
           </li>

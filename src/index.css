@@ -12,6 +12,11 @@ li {
   cursor: pointer;
 }
 
+.tab-nav--disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
 .tab-content {
   display: none;
 }
