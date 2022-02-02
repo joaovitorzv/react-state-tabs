@@ -19,7 +19,7 @@ Your zero-effort content hidden-visible tabs.
   - 🚫 Disable any tab you want. 
   - ♿ Accessiblity, Screen readers and Keyboard Controls.
   
-  comming soon
+  coming soon
   - 🪅 Animated transition element.
 
 ### Quickstart Example⤵️
