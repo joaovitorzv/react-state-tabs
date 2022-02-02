@@ -14,6 +14,13 @@
 # react-state-tabs
 Your zero-effort content hidden-visible tabs.
 
+### Features
+  - 🤯 Easy to use, Just two components and you're good to go.
+  - 🚫 Disable any tab you want. 
+  - ♿ Accessiblity, Screen readers and Keyboard Controls.
+  
+  coming soon
+  - 🪅 Animated transition element.
 
 ### Quickstart Example⤵️
   <img src="https://raw.githubusercontent.com/joaovitorzv/react-state-tabs/master/assets/tabs-example.png" />
