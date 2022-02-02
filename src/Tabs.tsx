@@ -11,14 +11,24 @@ interface ITabs {
 
 function Tabs({ children, defaultActiveTab }: ITabs) {
   const [active, setActive] = React.useState(defaultActiveTab);
-  console.log(active);
 
-  function handleTabPress(id: number, disabled?: boolean) {
-    return () => {
-      if (disabled) return;
-      setActive(id);
-    };
+  function handleTabMousePress(id: number, disabled?: boolean) {
+    if (disabled) return;
+    setActive(id);
+    return;
   }
+
+  function handleTabKeyPress(
+    e: React.KeyboardEvent<HTMLLIElement>,
+    id: number,
+    disabled?: boolean
+  ) {
+    if (disabled) return;
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+
+    setActive(id);
+  }
+
   return (
     <div className="tabs-wrapper">
       <ul>
@@ -34,7 +44,15 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
                 'tab-nav--disabled': tab.props.disabled,
               }
             )}
-            onClick={handleTabPress(tab.props.id, tab.props.disabled)}
+            onClick={() =>
+              handleTabMousePress(tab.props.id, tab.props.disabled)
+            }
+            onKeyDown={e =>
+              handleTabKeyPress(e, tab.props.id, tab.props.disabled)
+            }
+            role="button"
+            aria-pressed={tab.props.id === active}
+            tabIndex={0}
           >
             {tab.props.tabName}
           </li>
@@ -42,9 +60,10 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
       </ul>
       {children.map(tab => (
         <div
+          aria-expanded={tab.props.id === active}
           key={tab.props.id}
           className={clsx('tab-content', {
-            'tab-content--active': Number(tab.props.id) === active,
+            'tab-content--active': tab.props.id === active,
           })}
         >
           {tab.props.children}
