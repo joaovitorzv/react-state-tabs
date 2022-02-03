@@ -7,8 +7,8 @@ export interface ITab {
   children: React.ReactNode;
 }
 
-function Tab({ children }: ITab): JSX.Element {
-  return <div>{children}</div>;
+function Tab({ children }: ITab) {
+  return <>{children}</>;
 }
 
 export default Tab;
