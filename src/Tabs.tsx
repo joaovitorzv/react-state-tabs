@@ -52,6 +52,7 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
             }
             role="button"
             aria-pressed={tab.props.id === active}
+            aria-disabled={tab.props.disabled}
             tabIndex={0}
           >
             {tab.props.tabName}
@@ -61,6 +62,7 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
       {children.map(tab => (
         <div
           aria-expanded={tab.props.id === active}
+          aria-hidden={tab.props.id !== active}
           key={tab.props.id}
           className={clsx('tab-content', {
             'tab-content--active': tab.props.id === active,
