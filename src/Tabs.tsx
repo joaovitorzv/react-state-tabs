@@ -31,7 +31,7 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
 
   return (
     <div className="tabs-wrapper">
-      <ul>
+      <ul data-testid="tabs-navigation">
         {children.map(tab => (
           <li
             key={tab.props.id}

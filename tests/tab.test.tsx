@@ -1,16 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import Tab from '../src/Tab';
 
-describe('Tab suite', () => {
-  it('renders the tab children', () => {
-    const tab = shallow(
-      <Tab id={1} tabName="tab 1">
-        <p>i'am child.</p>
+describe('Tab component', () => {
+  it('Renders a Tab component children', () => {
+    const { getByText } = render(
+      <Tab id={1} tabName="Tab 1">
+        <p>I'm a children.</p>
       </Tab>
     );
 
-    expect(tab.contains(<p>i'am child.</p>)).toEqual(true);
+    expect(getByText("I'm a children.")).toBeInTheDocument();
   });
 });

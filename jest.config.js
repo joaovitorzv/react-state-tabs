@@ -1,5 +1,7 @@
 const config = {
-  setupFilesAfterEnv: ['<rootDir>tests/setupTests.js'],
+  moduleNameMapper: {
+    '\\.(css|less)$': 'identity-obj-proxy',
+  },
 };
 
 module.exports = config;
