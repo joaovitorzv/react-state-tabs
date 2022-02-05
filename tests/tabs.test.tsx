@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
@@ -21,36 +21,36 @@ describe('Tabs navigation', () => {
     </Tabs>
   );
 
-  const user = userEvent.setup();
   it('renders the tabs-nav', () => {
-    const { getByTestId } = render(mockTabs);
-    expect(getByTestId('tabs-navigation').childElementCount).toBe(3);
+    render(mockTabs);
+
+    expect(screen.getByTestId('tabs-navigation').childElementCount).toBe(3);
   });
 
   it('renders the defaultActiveTab', () => {
-    const { getByText } = render(mockTabs);
+    render(mockTabs);
 
-    expect(getByText('tab 3 content.')).toBeInTheDocument;
-    expect(getByText('Tab 3')).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByText('tab 3 content.')).toBeInTheDocument;
+    expect(screen.getByText('Tab 3')).toHaveAttribute('aria-pressed', 'true');
   });
 
   it('renders a disabled tabs-nav', () => {
-    const { getByText } = render(mockTabs);
+    render(mockTabs);
 
-    expect(getByText('Tab 2')).toHaveAttribute('aria-disabled', 'true');
+    expect(screen.getByText('Tab 2')).toHaveAttribute('aria-disabled', 'true');
   });
 
-  it('focus tabs-nav when user press TAB', async () => {
-    const { getByText } = render(mockTabs);
+  it('element has focus on Tab', async () => {
+    render(mockTabs);
 
-    await user.keyboard('{Shift}');
-    expect(getByText('Tab 1')).toHaveFocus;
+    await userEvent.tab();
+    expect(screen.getByText('Tab 1')).toHaveFocus();
   });
 
-  it('change tab with TAB and select with space', async () => {
-    const { getByText } = render(mockTabs);
+  it('move between tabs using Keyboard', async () => {
+    render(mockTabs);
 
-    await user.keyboard('{Shift}{Shift}');
-    expect(getByText('Tab 1')).not.toHaveFocus;
+    await userEvent.keyboard('{Tab}{Enter}');
+    expect(screen.getByText('Tab 1')).toHaveAttribute('aria-pressed', 'true');
   });
 });
