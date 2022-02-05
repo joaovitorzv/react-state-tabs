@@ -30,7 +30,7 @@ describe('Tabs navigation', () => {
   it('renders the defaultActiveTab', () => {
     render(mockTabs);
 
-    expect(screen.getByText('tab 3 content.')).toBeInTheDocument;
+    expect(screen.getByText('tab 3 content.')).toBeInTheDocument();
     expect(screen.getByText('Tab 3')).toHaveAttribute('aria-pressed', 'true');
   });
 
@@ -38,6 +38,32 @@ describe('Tabs navigation', () => {
     render(mockTabs);
 
     expect(screen.getByText('Tab 2')).toHaveAttribute('aria-disabled', 'true');
+  });
+
+  it('tries to acesss a disabled tab', async () => {
+    render(mockTabs);
+
+    const disabledTab = screen.getByText('Tab 2');
+    await userEvent.click(disabledTab);
+
+    expect(disabledTab).toHaveAttribute('aria-pressed', 'false');
+    expect(screen.getByTestId('tabContent-2')).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    );
+  });
+
+  it('change tab with mouse click', async () => {
+    render(mockTabs);
+
+    const tabToMove = screen.getByText('Tab 1');
+    await userEvent.click(tabToMove);
+
+    expect(tabToMove).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByTestId('tabContent-1')).toHaveAttribute(
+      'aria-expanded',
+      'true'
+    );
   });
 
   it('element has focus on Tab', async () => {
