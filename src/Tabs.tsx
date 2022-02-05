@@ -61,6 +61,7 @@ function Tabs({ children, defaultActiveTab }: ITabs) {
       </ul>
       {children.map(tab => (
         <div
+          data-testid={`tabContent-${tab.props.id}`}
           aria-expanded={tab.props.id === active}
           aria-hidden={tab.props.id !== active}
           key={tab.props.id}
