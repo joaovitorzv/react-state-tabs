@@ -11,14 +11,14 @@ interface ITabs {
 
 interface ITabProperties {
   width: number;
-  startPos: number;
+  viewPortleftDistance: number;
 }
 
 function Tabs({ children, defaultActiveTab = 1 }: ITabs) {
   const [active, setActive] = React.useState(defaultActiveTab);
   const [tabProperties, setTabProperties] = React.useState<ITabProperties>({
     width: 0,
-    startPos: 0,
+    viewPortleftDistance: 0,
   });
 
   const navigationRef = React.useRef<HTMLElement>(null);
@@ -28,18 +28,16 @@ function Tabs({ children, defaultActiveTab = 1 }: ITabs) {
     if (!tabRef.current || !navigationRef.current) return;
 
     setTabProperties({
-      startPos:
+      viewPortleftDistance:
         tabRef.current.getBoundingClientRect().left -
         navigationRef.current.getBoundingClientRect().left,
       width: tabRef.current.clientWidth,
     });
-    console.log(tabProperties);
   }, [tabRef, active]);
 
   function handleTabMousePress(id: number, disabled?: boolean) {
     if (disabled) return;
-    setActive(id);
-    return;
+    return setActive(id);
   }
 
   function handleTabKeyPress(
@@ -50,7 +48,7 @@ function Tabs({ children, defaultActiveTab = 1 }: ITabs) {
     if (disabled) return;
     if (e.key !== 'Enter' && e.key !== ' ') return;
 
-    setActive(id);
+    return setActive(id);
   }
 
   return (
@@ -90,7 +88,7 @@ function Tabs({ children, defaultActiveTab = 1 }: ITabs) {
           style={{
             height: '2px',
             position: 'relative',
-            left: tabProperties.startPos,
+            left: tabProperties.viewPortleftDistance,
             width: tabProperties.width,
           }}
         />
