@@ -5,11 +5,17 @@
     <img src="https://raw.githubusercontent.com/joaovitorzv/react-state-tabs/master/assets/logo.png" height="180">
 </p>
 <p align="center">
-  <img src="https://img.shields.io/github/license/joaovitorzv/react-state-tabs?color=gree&style=plastic" />
-  <img src="https://img.shields.io/github/commit-activity/y/joaovitorzv/react-state-tabs?color=gree&logo=github&style=plastic" />
-  <img src="https://img.shields.io/npm/v/react-state-tabs?color=gree&logo=npm&style=plastic" />
-  <img src="https://img.shields.io/npm/dependency-version/react-state-tabs/peer/react?style=plastic" />
-  </p>
+  <a href="https://github.com/joaovitorzv/react-state-tabs/actions/workflows/main.yaml">
+<img src="https://github.com/joaovitorzv/react-state-tabs/actions/workflows/main.yaml/badge.svg" style="height: 19px"/></a>
+  
+  <a href="https://github.com/joaovitorzv/react-state-tabs/blob/master/LICENSE">
+   <img src="https://img.shields.io/github/license/joaovitorzv/react-state-tabs?color=gree" /></a>
+  
+  <a href="https://www.npmjs.com/package/react-state-tabs">
+    <img src="https://img.shields.io/npm/v/react-state-tabs?color=gree&logo=npm" /></a>
+  <a href="https://reactjs.org/">
+    <img src="https://img.shields.io/npm/dependency-version/react-state-tabs/peer/react" /></a>
+</p>
 
 # react-state-tabs
 Your zero-effort content hidden-visible tabs.
