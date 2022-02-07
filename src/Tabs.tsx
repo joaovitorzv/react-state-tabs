@@ -77,7 +77,7 @@ function Tabs({ children, defaultActiveTab = 1 }: ITabs) {
               role="button"
               aria-pressed={tab.props.id === active}
               aria-disabled={tab.props.disabled}
-              tabIndex={tab.props.id === active ? 0 : -1}
+              tabIndex={0}
             >
               {tab.props.tabName}
             </li>
