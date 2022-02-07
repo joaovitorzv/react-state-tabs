@@ -7,19 +7,18 @@ import './index.css';
 interface ITabs {
   children: React.ReactElement<ITab>[];
   defaultActiveTab?: number;
+  cursor?: 'line';
 }
 
-interface ITabProperties {
+interface ICursorStyles {
+  left: number;
   width: number;
-  viewPortleftDistance: number;
 }
 
-function Tabs({ children, defaultActiveTab = 1 }: ITabs) {
+function Tabs({ children, defaultActiveTab = 1, cursor = 'line' }: ITabs) {
   const [active, setActive] = React.useState(defaultActiveTab);
-  const [tabProperties, setTabProperties] = React.useState<ITabProperties>({
-    width: 0,
-    viewPortleftDistance: 0,
-  });
+
+  const [lineStyles, setLineStyles] = React.useState<ICursorStyles>();
 
   const navigationRef = React.useRef<HTMLElement>(null);
   const tabRef = React.useRef<HTMLLIElement>(null);
@@ -27,12 +26,14 @@ function Tabs({ children, defaultActiveTab = 1 }: ITabs) {
   React.useEffect(() => {
     if (!tabRef.current || !navigationRef.current) return;
 
-    setTabProperties({
-      viewPortleftDistance:
-        tabRef.current.getBoundingClientRect().left -
-        navigationRef.current.getBoundingClientRect().left,
-      width: tabRef.current.clientWidth,
-    });
+    if (cursor === 'line') {
+      setLineStyles({
+        left:
+          tabRef.current.getBoundingClientRect().left -
+          navigationRef.current.getBoundingClientRect().left,
+        width: tabRef.current.clientWidth,
+      });
+    }
   }, [tabRef, active]);
 
   function handleTabMousePress(id: number, disabled?: boolean) {
@@ -84,13 +85,8 @@ function Tabs({ children, defaultActiveTab = 1 }: ITabs) {
           ))}
         </ul>
         <span
-          className="cursor"
-          style={{
-            height: '2px',
-            position: 'relative',
-            left: tabProperties.viewPortleftDistance,
-            width: tabProperties.width,
-          }}
+          className={clsx('cursor', { 'cursor-line': cursor })}
+          style={lineStyles}
         />
       </nav>
       {children.map(tab => (
