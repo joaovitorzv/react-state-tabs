@@ -8,6 +8,7 @@ interface ITabs {
   children: React.ReactElement<ITab>[];
   defaultActiveTab?: number;
   cursor?: 'line';
+  callbackOnMount: () => void;
 }
 
 interface ICursorStyles {
@@ -15,7 +16,12 @@ interface ICursorStyles {
   width: number;
 }
 
-function Tabs({ children, defaultActiveTab = 1, cursor = 'line' }: ITabs) {
+function Tabs({
+  children,
+  defaultActiveTab = 1,
+  cursor = 'line',
+  callbackOnMount,
+}: ITabs) {
   const [active, setActive] = React.useState(defaultActiveTab);
 
   const [lineStyles, setLineStyles] = React.useState<ICursorStyles>();
@@ -35,6 +41,10 @@ function Tabs({ children, defaultActiveTab = 1, cursor = 'line' }: ITabs) {
       });
     }
   }, [tabRef, active]);
+
+  React.useEffect(() => {
+    callbackOnMount();
+  }, [active]);
 
   function handleTabMousePress(id: number, disabled?: boolean) {
     if (disabled) return;
