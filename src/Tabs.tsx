@@ -44,10 +44,15 @@ function Tabs({
         left:
           tabRef.current.getBoundingClientRect().left -
           navigationRef.current.getBoundingClientRect().left,
-        top: tabRef.current.getBoundingClientRect().bottom - lineHeight,
+        top:
+          tabRef.current.getBoundingClientRect().bottom -
+          tabRef.current.getBoundingClientRect().top -
+          lineHeight,
         ...lineAnimation,
       });
     }
+
+    console.log(tabRef.current);
 
     if (backgroundStyles) {
       setBackgroundStyles({
@@ -60,7 +65,7 @@ function Tabs({
         ...backgroundAnimation,
       });
     }
-  }, [tabRef, navigationRef, active, cursorRef]);
+  }, [tabRef, navigationRef, active]);
 
   React.useEffect(() => {
     callbackOnMount();
