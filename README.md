@@ -23,7 +23,7 @@ Your zero-effort content hidden-visible tabs.
 ### Features
   - 🤯 Easy to use, Just two components and you're good to go.
   - 🚫 Disable any tab you want. 
-  - ♿ Accessibility, Screen readers and Keyboard Controls.
+  - ♿ Accessibility, Screen readers and Keyboard Control.
   - 🪅 Animated transition element.
 
 ### Quickstart ⤵️
@@ -35,8 +35,8 @@ The example above is simply that
   defaultActiveTab={3} // default is 1
   style={{ padding: "10px 20px" }} // style applied to every tab button
   styleActive={{ color: "red" }} // style applied only on active tab button
-  lineHeight={3} // animated bottom line height
-  lineAnimationStyles={{ backgroundColor: "red" }} // animated bottom line styles
+  lineCursorHeight={3} // line cursor height
+  lineCursorAnimationStyles={{ backgroundColor: "red" }} // line cursor styles
 >
   <Tab id={1} tabName="Tab"> ${/* tab id must be unique, and tab (button) name */}
     ${/* tab childrens, will render when respective tab is active */}
@@ -47,43 +47,29 @@ The example above is simply that
   <Tab id={2} tabName="Tab Two" disabled={true}>
     <p>Tab 2 content.</p>
   </Tab>
-  <Tab id={3} tabName="Tab Three large">
-    <button type="button">button</button>
-    <p>three</p>
-  </Tab>
-  <Tab id={4} tabName="4?">
-    <button type="button">button</button>
-    <p>tab four</p>
-  </Tab>
-  <Tab id={5} tabName="Fiveeee">
-    <button type="button">button</button>
-    <p>tab 5</p>
-  </Tab>
+  ...
 </Tabs>
 ```
 
 ### Styling
-The only style defined is for hiding the content, interacting with the cursor when hovering the navigation-tabs and on the `ul` that wraps the navigation-tabs (to place them horizontally). 
-
-#### To build your own style 
-in any imported css file on your project, you can use the following classes:
-
-  - `.tab-nav` tabs that are not active or disabled will use this class
-  - with `.tab-nav--active` you can override `.tab-nav` styles when tab is active 
-  - `.tab-nav--disabled` same as above but for disabled ones
-  - `.tab-content` it wraps the content being shown (the child elements of <Tab />)
+To allow you to use more than one component on the same file but with different styles the styles attributes are passed as props, see below
 
 ## API
-There are only these two components
-
 ### &lt;Tabs /&gt;
-```js
-defaultActiveTab?: number; // default: 1
-```
+
+| Prop               | Description                                        | Type                                         | Default          |
+| ------------------ | -------------------------------------------------- | -------------------------------------------- | ---------------- |
+| defaultActiveTab   | set a tab to be active as default                  | `number \| undefined`                        | 1                |
+| style              | styles applied to every tab button                 | `CSSProperties \| undefined`                 | -                |
+| styleActive        | styles applied when tab is active                  | `CSSProperties \| undefined`                 | -                |
+| lineCursorHeight   | line cursor height (in px)                         | `number \| undefined`                        | 0                |
+| lineCursorStyles   | line cursor styles (dont use height here)          | `CSSProperties \| undefined`                 | -                |
 
 ### &lt;Tab /&gt;
-```js
-id: number; // required
-tabName: string; // required
-disabled?: boolean; // default: not disabled
-```
+
+| Prop               | Description                                        | Type                                         | Default          |
+| ------------------ | -------------------------------------------------- | -------------------------------------------- | ---------------- |
+| id                 | unique ID to match active tab with content visible | `number \*required`                          | -                |
+| tabName            | name shown on tab button                           | `string \*required`                          | -                |
+| disabled           | disable a specific tab                             | `boolean \| undefined`                       | false            |
+
