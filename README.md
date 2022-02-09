@@ -55,7 +55,7 @@ The example above is simply that
 To allow you to use more than one component on the same file but with different styles the styles attributes are passed as props, see below
 
 ## API
-### &lt;Tabs /&gt;
+### `<Tabs />`
 
 | Prop               | Description                                        | Type                                         | Default          |
 | ------------------ | -------------------------------------------------- | -------------------------------------------- | ---------------- |
@@ -66,7 +66,7 @@ To allow you to use more than one component on the same file but with different 
 | lineCursorStyles?  | line cursor styles (dont use height here)          | `CSSProperties \| undefined`                 | -                |
 | callbackOnMount?   | callback when tab is mounted/changed               | `(active: number) => void`                   | -                |
 
-### &lt;Tab /&gt;
+### `<Tab />`
 
 | Prop               | Description                                        | Type                                         | Default          |
 | ------------------ | -------------------------------------------------- | -------------------------------------------- | ---------------- |
