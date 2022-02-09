@@ -24,30 +24,44 @@ Your zero-effort content hidden-visible tabs.
   - 🤯 Easy to use, Just two components and you're good to go.
   - 🚫 Disable any tab you want. 
   - ♿ Accessibility, Screen readers and Keyboard Controls.
-  
-  coming soon
   - 🪅 Animated transition element.
 
-### Quickstart Example⤵️
-  <img src="https://raw.githubusercontent.com/joaovitorzv/react-state-tabs/master/assets/tabs-example.png" />
-
-The example above is simply that:
+### Quickstart ⤵️
+  <img height="300" src="https://raw.githubusercontent.com/joaovitorzv/react-state-tabs/master/assets/example.gif" />
+  
+The example above is simply that
 ```jsx
-<Tabs defaultActiveTab={3}> // defaultActiveTab is optional (default is 1)
-  <Tab id={1} tabName="Tab One">
-    <gif />
+<Tabs
+  defaultActiveTab={3} // default is 1
+  style={{ padding: "10px 20px" }} // style applied to every tab button
+  styleActive={{ color: "red" }} // style applied only on active tab button
+  lineHeight={3} // animated bottom line height
+  lineAnimationStyles={{ backgroundColor: "red" }} // animated bottom line styles
+>
+  <Tab id={1} tabName="Tab"> ${/* tab id must be unique, and tab (button) name */}
+    ${/* tab childrens, will render when respective tab is active */}
+    <gif /> 
     <p>Tab 1 content.</p>
+    <button type="button">another button</button>
   </Tab>
-  <Tab id={2} tabName="Tab Two" disabled={true}> // This one is disabled
-    <gif />
+  <Tab id={2} tabName="Tab Two" disabled={true}>
     <p>Tab 2 content.</p>
   </Tab>
-  <Tab id={3} tabName="Tab Three"> // This tab will be active as default
-    <gif />
-    <p>Tab 3 content.</p>
+  <Tab id={3} tabName="Tab Three large">
+    <button type="button">button</button>
+    <p>three</p>
+  </Tab>
+  <Tab id={4} tabName="4?">
+    <button type="button">button</button>
+    <p>tab four</p>
+  </Tab>
+  <Tab id={5} tabName="Fiveeee">
+    <button type="button">button</button>
+    <p>tab 5</p>
   </Tab>
 </Tabs>
 ```
+
 ### Styling
 The only style defined is for hiding the content, interacting with the cursor when hovering the navigation-tabs and on the `ul` that wraps the navigation-tabs (to place them horizontally). 
 
