@@ -8,18 +8,20 @@ interface ITabs {
   children: React.ReactElement<ITab>[];
   defaultActiveTab?: number;
   style?: React.CSSProperties;
-  backgroundAnimation?: React.CSSProperties;
+  styleActive?: React.CSSProperties;
+  lineAnimationStyles?: React.CSSProperties;
   lineHeight?: number;
-  lineAnimation?: React.CSSProperties;
+  backgroundAnimation?: React.CSSProperties;
   callbackOnMount?: () => void;
 }
 
 function Tabs({
   children,
   style,
+  styleActive,
   defaultActiveTab = 1,
   lineHeight = 0,
-  lineAnimation,
+  lineAnimationStyles,
   backgroundAnimation,
   callbackOnMount = () => {},
 }: ITabs) {
@@ -37,7 +39,7 @@ function Tabs({
   React.useEffect(() => {
     if (!tabRef.current || !navigationRef.current || !cursorRef.current) return;
 
-    if (lineAnimation) {
+    if (lineAnimationStyles) {
       setLineStyles({
         height: lineHeight,
         width: tabRef.current.clientWidth,
@@ -48,11 +50,9 @@ function Tabs({
           tabRef.current.getBoundingClientRect().bottom -
           tabRef.current.getBoundingClientRect().top -
           lineHeight,
-        ...lineAnimation,
+        ...lineAnimationStyles,
       });
     }
-
-    console.log(tabRef.current);
 
     if (backgroundStyles) {
       setBackgroundStyles({
@@ -95,7 +95,11 @@ function Tabs({
             <li
               ref={tab.props.id === active ? tabRef : undefined}
               key={tab.props.id}
-              style={style}
+              style={
+                tab.props.id === active
+                  ? { ...style, ...styleActive }
+                  : { ...style }
+              }
               className={clsx(
                 'tab-nav',
                 {
@@ -124,7 +128,7 @@ function Tabs({
           <div
             ref={cursorRef}
             className={clsx('cursor', {
-              'cursor-line': lineAnimation,
+              'cursor-line': lineAnimationStyles,
               'cursor-background': backgroundAnimation,
             })}
             style={lineStyles}
