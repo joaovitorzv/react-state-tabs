@@ -9,6 +9,7 @@ interface ITabs {
   defaultActiveTab?: number;
   style?: React.CSSProperties;
   backgroundAnimation?: React.CSSProperties;
+  lineHeight?: number;
   lineAnimation?: React.CSSProperties;
   callbackOnMount?: () => void;
 }
@@ -17,6 +18,7 @@ function Tabs({
   children,
   style,
   defaultActiveTab = 1,
+  lineHeight = 0,
   lineAnimation,
   backgroundAnimation,
   callbackOnMount = () => {},
@@ -37,16 +39,17 @@ function Tabs({
 
     if (lineAnimation) {
       setLineStyles({
+        height: lineHeight,
         width: tabRef.current.clientWidth,
         left:
           tabRef.current.getBoundingClientRect().left -
           navigationRef.current.getBoundingClientRect().left,
-        top: tabRef.current.clientHeight - cursorRef.current.clientHeight,
+        top: tabRef.current.getBoundingClientRect().bottom - lineHeight,
         ...lineAnimation,
       });
     }
 
-    if (backgroundStyles === undefined) {
+    if (backgroundStyles) {
       setBackgroundStyles({
         height: tabRef.current.clientHeight,
         width: tabRef.current.clientWidth,
@@ -57,7 +60,7 @@ function Tabs({
         ...backgroundAnimation,
       });
     }
-  }, [tabRef, navigationRef, active]);
+  }, [tabRef, navigationRef, active, cursorRef]);
 
   React.useEffect(() => {
     callbackOnMount();
