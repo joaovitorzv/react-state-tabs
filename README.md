@@ -69,7 +69,7 @@ To allow you to use more than one component on the same file but with different 
 
 | Prop               | Description                                        | Type                                         | Default          |
 | ------------------ | -------------------------------------------------- | -------------------------------------------- | ---------------- |
-| id                 | unique ID to match active tab with content visible | `number \*required`                          | -                |
-| tabName            | name shown on tab button                           | `string \*required`                          | -                |
-| disabled           | disable a specific tab                             | `boolean \| undefined`                       | false            |
+| id                 | unique ID to match active tab with content visible | `number *required`                           | -                |
+| tabName            | name shown on tab button                           | `string *required`                           | -                |
+| disabled           | disable a specific tab                             | `boolean \| undefined`                       | -                |
 
