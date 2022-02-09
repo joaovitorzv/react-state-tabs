@@ -59,11 +59,12 @@ To allow you to use more than one component on the same file but with different 
 
 | Prop               | Description                                        | Type                                         | Default          |
 | ------------------ | -------------------------------------------------- | -------------------------------------------- | ---------------- |
-| defaultActiveTab   | set a tab to be active as default                  | `number \| undefined`                        | 1                |
-| style              | styles applied to every tab button                 | `CSSProperties \| undefined`                 | -                |
-| styleActive        | styles applied when tab is active                  | `CSSProperties \| undefined`                 | -                |
-| lineCursorHeight   | line cursor height (in px)                         | `number \| undefined`                        | 0                |
-| lineCursorStyles   | line cursor styles (dont use height here)          | `CSSProperties \| undefined`                 | -                |
+| defaultActiveTab?  | set a tab to be active as default                  | `number \| undefined`                        | 1                |
+| style?             | styles applied to every tab button                 | `CSSProperties \| undefined`                 | -                |
+| styleActive?       | styles applied when tab is active                  | `CSSProperties \| undefined`                 | -                |
+| lineCursorHeight?  | line cursor height (in px)                         | `number \| undefined`                        | 0                |
+| lineCursorStyles?  | line cursor styles (dont use height here)          | `CSSProperties \| undefined`                 | -                |
+| callbackOnMount?   | callback when tab is mounted/changed               | `(active: number) => void`                   | -                |
 
 ### &lt;Tab /&gt;
 
