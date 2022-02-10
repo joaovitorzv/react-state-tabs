@@ -30,8 +30,13 @@ li {
   flex-direction: column;
 }
 
+.absolute-cursor {
+  position: absolute;
+  z-index: -1;
+}
+
 .cursor {
-  background: black;
+  position: relative;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -40,6 +45,9 @@ li {
 }
 
 .cursor-line {
-  height: 2px;
+  position: relative;
+}
+
+.cursor-background {
   position: relative;
 }
