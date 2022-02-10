@@ -18,7 +18,7 @@
 </p>
 
 # react-state-tabs
-Your zero-effort content hidden-visible tabs. <strong><a href="">see examples live on codesandbox.io 🧰</a></strong>
+Your zero-effort content hidden-visible tabs. <strong>[see examples live on codesandbox.io 🧰](https://codesandbox.io/s/react-state-tabs-examples-gucij)</strong>
 
 ### Features
   - 🤯 Easy to use, Just two components and you're good to go.
