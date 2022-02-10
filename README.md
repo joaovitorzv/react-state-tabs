@@ -27,7 +27,7 @@ Your zero-effort content hidden-visible tabs. <strong><a href="">see examples li
   - 🪅 Animated transition element.
 
 ### Quickstart ⤵️
-  <img height="280" src="https://raw.githubusercontent.com/joaovitorzv/react-state-tabs/master/assets/example.gif" />
+<img height="229" src="https://raw.githubusercontent.com/joaovitorzv/react-state-tabs/master/assets/example.gif" />
   
 The example above is simply that
 ```jsx
