@@ -18,7 +18,7 @@
 </p>
 
 # react-state-tabs
-Your zero-effort content hidden-visible tabs.
+Your zero-effort content hidden-visible tabs. <strong><a href="">see examples live on codesandbox.io 🧰</a></strong>
 
 ### Features
   - 🤯 Easy to use, Just two components and you're good to go.
@@ -27,7 +27,7 @@ Your zero-effort content hidden-visible tabs.
   - 🪅 Animated transition element.
 
 ### Quickstart ⤵️
-  <img height="300" src="https://raw.githubusercontent.com/joaovitorzv/react-state-tabs/master/assets/example.gif" />
+  <img height="280" src="https://raw.githubusercontent.com/joaovitorzv/react-state-tabs/master/assets/example.gif" />
   
 The example above is simply that
 ```jsx
