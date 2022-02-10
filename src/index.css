@@ -12,42 +12,29 @@ li {
   cursor: pointer;
 }
 
-.tab-nav--disabled {
+.rst-tab-nav--disabled {
   color: gray;
   cursor: not-allowed;
 }
 
-.tab-content {
+.rst-tab-content {
   display: none;
 }
 
-.tab-content--active {
+.rst-tab-content--active {
   display: block;
 }
 
-.navigation {
+.rst-navigation {
   display: flex;
   flex-direction: column;
 }
 
-.absolute-cursor {
+.rst-absolute-cursor {
   position: absolute;
   z-index: -1;
 }
 
-.cursor {
-  position: relative;
-  transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-}
-
-.cursor-line {
-  position: relative;
-}
-
-.cursor-background {
+.rst-cursor {
   position: relative;
 }

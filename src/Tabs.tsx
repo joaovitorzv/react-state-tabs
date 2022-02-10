@@ -11,8 +11,12 @@ interface ITabs {
   tabClassName?: string;
   activeClassName?: string;
   disabledClassName?: string;
+  contentContainerClassName?: string;
   cursorClassName?: string;
+  cursorAsBackground?: boolean;
 }
+
+const RST_SCOPED_CLASS = 'rst-';
 
 function Tabs({
   children,
@@ -21,7 +25,9 @@ function Tabs({
   tabClassName = '',
   activeClassName = '',
   disabledClassName = '',
+  contentContainerClassName = '',
   cursorClassName = '',
+  cursorAsBackground,
 }: ITabs) {
   const [active, setActive] = React.useState(defaultActiveTab);
 
@@ -37,19 +43,7 @@ function Tabs({
   React.useEffect(() => {
     if (!tabRef.current || !navigationRef.current || !cursorRef.current) return;
 
-    setLineStyles({
-      width: tabRef.current.clientWidth,
-      left:
-        tabRef.current.getBoundingClientRect().left -
-        navigationRef.current.getBoundingClientRect().left,
-      top:
-        tabRef.current.getBoundingClientRect().bottom -
-        tabRef.current.getBoundingClientRect().top -
-        cursorRef.current.clientHeight,
-    });
-
-    console.log(lineStyles);
-    if (backgroundStyles) {
+    if (cursorAsBackground) {
       setBackgroundStyles({
         height: tabRef.current.clientHeight,
         width: tabRef.current.clientWidth,
@@ -57,6 +51,17 @@ function Tabs({
           tabRef.current.getBoundingClientRect().left -
           navigationRef.current.getBoundingClientRect().left,
         top: 0,
+      });
+    } else {
+      setLineStyles({
+        width: tabRef.current.clientWidth,
+        left:
+          tabRef.current.getBoundingClientRect().left -
+          navigationRef.current.getBoundingClientRect().left,
+        top:
+          tabRef.current.getBoundingClientRect().bottom -
+          tabRef.current.getBoundingClientRect().top -
+          cursorRef.current.clientHeight,
       });
     }
   }, [tabRef, navigationRef, active, cursorRef]);
@@ -82,9 +87,9 @@ function Tabs({
   }
 
   return (
-    <div className="tabs-wrapper">
-      <nav className="navigation" ref={navigationRef}>
-        <ul data-testid="tabs-navigation" className="container-nav">
+    <div>
+      <nav className={`${RST_SCOPED_CLASS}navigation`} ref={navigationRef}>
+        <ul data-testid="tabs-navigation">
           {children.map(tab => (
             <li
               ref={tab.props.id === active ? tabRef : undefined}
@@ -108,11 +113,11 @@ function Tabs({
             </li>
           ))}
         </ul>
-        <div className="absolute-cursor">
+        <div className={`${RST_SCOPED_CLASS}absolute-cursor`}>
           <div
             ref={cursorRef}
-            className={clsx('cursor', cursorClassName)}
-            style={lineStyles}
+            className={clsx(`${RST_SCOPED_CLASS}cursor`, cursorClassName)}
+            style={cursorAsBackground ? backgroundStyles : lineStyles}
           />
         </div>
       </nav>
@@ -122,8 +127,9 @@ function Tabs({
           aria-expanded={tab.props.id === active}
           aria-hidden={tab.props.id !== active}
           key={tab.props.id}
-          className={clsx('tab-content', {
-            'tab-content--active': tab.props.id === active,
+          className={clsx(`${RST_SCOPED_CLASS}tab-content`, {
+            [contentContainerClassName]: tab.props.id === active,
+            [`${RST_SCOPED_CLASS}tab-content--active`]: tab.props.id === active,
           })}
         >
           {tab.props.children}
