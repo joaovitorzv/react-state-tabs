@@ -140,3 +140,5 @@ There are two ways the animated cursor can behave: as a line (shown on the examp
 | tabName            | name shown on tab button                           | `string *required`                           | -                |
 | disabled?          | disable a specific tab                             | `boolean \| undefined`                       | -                |
 
+## License 
+<a href="LICENSE">MIT</a> | &copy; 2022 João Vitor Veras
