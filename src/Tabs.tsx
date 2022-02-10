@@ -7,23 +7,21 @@ import './index.css';
 interface ITabs {
   children: React.ReactElement<ITab>[];
   defaultActiveTab?: number;
-  style?: React.CSSProperties;
-  styleActive?: React.CSSProperties;
-  lineAnimationStyles?: React.CSSProperties;
-  lineHeight?: number;
-  backgroundAnimation?: React.CSSProperties;
-  callbackOnMount?: () => void;
+  callbackOnMount?: (active: number) => void;
+  tabClassName?: string;
+  activeClassName?: string;
+  disabledClassName?: string;
+  cursorClassName?: string;
 }
 
 function Tabs({
   children,
-  style,
-  styleActive,
   defaultActiveTab = 1,
-  lineHeight = 0,
-  lineAnimationStyles,
-  backgroundAnimation,
   callbackOnMount = () => {},
+  tabClassName = '',
+  activeClassName = '',
+  disabledClassName = '',
+  cursorClassName = '',
 }: ITabs) {
   const [active, setActive] = React.useState(defaultActiveTab);
 
@@ -39,21 +37,18 @@ function Tabs({
   React.useEffect(() => {
     if (!tabRef.current || !navigationRef.current || !cursorRef.current) return;
 
-    if (lineAnimationStyles) {
-      setLineStyles({
-        height: lineHeight,
-        width: tabRef.current.clientWidth,
-        left:
-          tabRef.current.getBoundingClientRect().left -
-          navigationRef.current.getBoundingClientRect().left,
-        top:
-          tabRef.current.getBoundingClientRect().bottom -
-          tabRef.current.getBoundingClientRect().top -
-          lineHeight,
-        ...lineAnimationStyles,
-      });
-    }
+    setLineStyles({
+      width: tabRef.current.clientWidth,
+      left:
+        tabRef.current.getBoundingClientRect().left -
+        navigationRef.current.getBoundingClientRect().left,
+      top:
+        tabRef.current.getBoundingClientRect().bottom -
+        tabRef.current.getBoundingClientRect().top -
+        cursorRef.current.clientHeight,
+    });
 
+    console.log(lineStyles);
     if (backgroundStyles) {
       setBackgroundStyles({
         height: tabRef.current.clientHeight,
@@ -62,13 +57,12 @@ function Tabs({
           tabRef.current.getBoundingClientRect().left -
           navigationRef.current.getBoundingClientRect().left,
         top: 0,
-        ...backgroundAnimation,
       });
     }
-  }, [tabRef, navigationRef, active]);
+  }, [tabRef, navigationRef, active, cursorRef]);
 
   React.useEffect(() => {
-    callbackOnMount();
+    callbackOnMount(active);
   }, [active]);
 
   function handleTabMousePress(id: number, disabled?: boolean) {
@@ -95,20 +89,10 @@ function Tabs({
             <li
               ref={tab.props.id === active ? tabRef : undefined}
               key={tab.props.id}
-              style={
-                tab.props.id === active
-                  ? { ...style, ...styleActive }
-                  : { ...style }
-              }
-              className={clsx(
-                'tab-nav',
-                {
-                  'tab-nav--active': tab.props.id === active,
-                },
-                {
-                  'tab-nav--disabled': tab.props.disabled,
-                }
-              )}
+              className={clsx(tabClassName, {
+                [activeClassName]: tab.props.id === active,
+                [disabledClassName]: tab.props.disabled,
+              })}
               onClick={() =>
                 handleTabMousePress(tab.props.id, tab.props.disabled)
               }
@@ -127,10 +111,7 @@ function Tabs({
         <div className="absolute-cursor">
           <div
             ref={cursorRef}
-            className={clsx('cursor', {
-              'cursor-line': lineAnimationStyles,
-              'cursor-background': backgroundAnimation,
-            })}
+            className={clsx('cursor', cursorClassName)}
             style={lineStyles}
           />
         </div>
