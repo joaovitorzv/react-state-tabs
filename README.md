@@ -87,19 +87,21 @@ export default LineCursorExample;
 }
 
 .mytab--active {
-  color: blue;
+  color: #9f7eed;
 }
 
 .mytab--disabled {
   color: gray;
+  cursor: default;
 }
 
 .mytab-content {
-  background-color: blanchedalmond;
+  background-color: #141414;
+  padding: 1em;
 }
 
 .mytab-cursor {
-  background-color: red;
+  background-color: #9f7eed;
   height: 3px;
 
   transition: all 0.3s ease;
