@@ -114,8 +114,8 @@ export default LineCursorExample;
 
 ### About the cursor (the bottom line)
 There are two ways the animated cursor can behave: as a line (shown on the example above) or as a background.
-  - `line cursor`: just pass any className you want on the `cursorClassName` prop and define the height, background, or animations desired to your cursor and it's done.
-  - `background cursor`: in order to make the cursor animated and fill the active tab background pass a `cursorAsBackground={true}` prop and **remove/do not add** the *height property* from your `cursorClassName` styles.
+  - `line cursor`: just pass any desired className on the `cursorClassName` prop to define the height, background, or animations to your cursor and it's done.
+  - `background cursor`: in order to make the cursor animated and fill the active tab background use the `cursorAsBackground={true}` prop and **remove/do not add** the *height property* from your `cursorClassName` styles.
 
 ## API
 ### `<Tabs />`
